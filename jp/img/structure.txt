@@ -1,0 +1,35 @@
+@startuml
+skinparam {
+	defaultFontName "Mplus 1p Light"
+}
+
+folder Cipher1 <<Cipher>> {
+	frame "Task1" <<Task>>
+	frame "Task2" <<Task>>
+	frame "TaskX" <<Task>>
+	file "Token1" <<Token>>
+	file "Token2" <<Token>>
+	file "TokenX" <<Token>>
+}
+
+cloud MultiSig1 <<MultiSig>>
+
+rectangle Person1 <<Person>>
+rectangle Person2 <<Person>>
+rectangle PersonX <<Person>>
+
+folder Cipher2 <<Cipher>>
+folder CipherX <<Cipher>>
+
+
+Cipher1  ..  MultiSig1
+
+Person1 .. Cipher1
+Person1 .. Cipher2
+Person2 .. Cipher1
+Person2 .. CipherX
+PersonX .. Cipher2
+PersonX .. CipherX
+
+@enduml
+

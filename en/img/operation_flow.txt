@@ -1,0 +1,76 @@
+@startuml
+skinparam {
+	defaultFontName "Mplus 1p Light"
+	ArrowColor #111
+	ActivityBarColor #444
+	ComponentBorderColor #444
+}
+
+|#AntiqueWhite|The member of Cipher A|
+start
+:Create a Cipher;
+:V1(Official)}
+:V2(Draft)}
+:Create a Token;
+:Create a Task;
+fork
+  :Approve the Cipher;
+fork again
+  |#AntiqueWhite|The member of Cipher B,C…|
+  :Approve the Cipher;
+endfork
+|The member of Cipher A|
+:Formalize V2}
+fork
+  |The member of Cipher A|
+  :Assign the P.I.C of the Task;
+fork again
+  |User A|
+  :Apply the P.I.C of the Task;
+endfork
+
+|The member of Cipher A|
+fork
+  :Apply the P.I.C.;
+fork again
+  |The member of Cipher B,C…|
+  :Approve the P.I.C.;
+fork again
+  |User A|
+  :Approve the P.I.C.;
+endfork
+|User A|
+:Do the Task;
+:Present the results;
+|The member of Cipher A|
+fork
+  :Approve the results;
+fork again
+  |The member of Cipher B,C…|
+  :Approve the results;
+endfork
+|User A|
+if (type of rewards = cryptcurrency) then (Yes)
+	|User A|
+	:Apply the payments;
+	fork
+		|The member of Cipher A|
+		:Approve the application of payments;
+	fork again
+		|The member of Cipher B,C…|
+		:Approve the application of payments;
+	endfork
+	|User A|
+	:Execute the process for getting paid;
+	|#AntiqueWhite|Cipher(automatic processing) |
+	:Pay;
+	|User A|
+	:Receive the payments;
+else (No)
+	|Cipher(automatic processing) |
+	:Pay;
+	|User A|
+	:Receive he payments;
+endif
+stop
+@enduml

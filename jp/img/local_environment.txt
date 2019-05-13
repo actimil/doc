@@ -1,0 +1,47 @@
+@startuml
+skinparam {
+	defaultFontName "Mplus 1p Light"
+	BoxPadding 100px
+}
+
+rectangle ローカル端末 {
+	rectangle mypher_eosio <<<dockerコンテナ>> {
+		rectangle "EOS" as EOS1 {
+			component "Mypher SmartContract" as Contract1 
+		}
+		rectangle "IPFS" as IPFS1 {
+		}
+	}
+	rectangle mypher_myphersystem <<<dockerコンテナ>> {
+		rectangle "EOS" as EOS2 {
+			component "Mypher SmartContract" as Contract2 
+		}
+		rectangle "IPFS" as IPFS2 {
+		}
+	}
+	rectangle mypher_user <<<dockerコンテナ>> {
+		rectangle "EOS" as EOS3 {
+			component "Mypher SmartContract" as Contract3
+		}
+		rectangle "IPFS" as IPFS3 {
+		}
+		rectangle node.js {
+			component Mypher
+		}
+	}
+	rectangle ブラウザ {
+	}
+	mypher_eosio -[hidden]r- mypher_myphersystem
+	EOS1 -d- EOS2
+	EOS2 -- EOS3
+	EOS3 -- EOS1
+	IPFS1 -d- IPFS2
+	IPFS2 -- IPFS3
+	IPFS3 -- IPFS1
+	ブラウザ -- node.js
+	node.js -- EOS3
+	node.js -- IPFS3
+}
+
+@enduml
+

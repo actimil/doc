@@ -1,0 +1,92 @@
+@startuml
+skinparam {
+	defaultFontName Geneva
+}
+
+actor "Founder" as founder
+actor "Member A" as membera
+actor "Member B" as memberb
+actor "Co-Owner A of Account" as coownera
+actor "Co-Owner B of Account" as coownerb
+entity "MultiSig Account" as multisig
+
+== To create the Cipher ==
+create entity "Cipher" as cipher
+founder -> cipher : create
+activate cipher
+cipher --> multisig : link 
+note right : Thinking phase 
+membera -> cipher : edit
+memberb -> cipher : edit
+
+== To create the Task ==
+memberb -> cipher : create
+create entity "Task A(pay by token)" as taska
+cipher -> taska
+activate taska
+founder -> cipher : create
+create entity "Task B(pay by crypto-currency)" as taskb
+cipher -> taskb
+activate taskb
+
+== To approve the Cipher ==
+founder -> cipher : approve
+membera -> cipher : approve
+memberb -> cipher : approve
+deactivate cipher
+deactivate taska
+deactivate taskb 
+note right : The cipher is approved
+
+== To decide P.I.C. for each Task ==
+actor "User A" as pica
+actor "User B" as picb
+pica -> taska : apply for P.I.C.
+activate taska
+note left : Approval phase
+picb -> taskb : apply for P.I.C. 
+activate taskb
+note left : Approval phase
+founder -> taska : approve
+founder -> taskb : approve
+membera -> taska : approve
+membera -> taskb : approve
+memberb -> taska : approve
+deactivate taska
+note right : P.I.C. is decided
+memberb -> taskb : approve
+deactivate taskb
+note right : P.I.C. is decided
+
+== To execute the Task ==
+pica -> taska : present the results
+activate taska
+picb -> taskb : present the results
+activate taskb
+
+== To check and reeive the results ==
+founder -> taska : approve
+founder -> taskb : approve
+membera -> taska : approve
+membera -> taskb : approve
+memberb -> taska : approve
+deactivate taska
+cipher -> pica : distribute a Token
+note right : Task completes
+memberb -> taskb : approve
+deactivate taskb
+note right : Task completes
+
+== To make payment ==
+picb -> taskb : request for mayment
+activate picb
+taskb -> multisig : prepare for payment
+activate multisig
+coownera -> multisig : sign
+coownerb -> multisig : sign
+picb -> multisig : execute payment procedure
+multisig -> picb : transfer
+deactivate multisig
+deactivate picb
+
+@enduml

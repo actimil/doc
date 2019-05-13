@@ -1,0 +1,92 @@
+@startuml
+skinparam {
+	defaultFontName "Mplus 1p Light"
+}
+
+actor "サイファーメンバーA" as founder
+actor "サイファーメンバーB" as membera
+actor "サイファーメンバーC" as memberb
+actor "共有口座所有者A" as coownera
+actor "共有口座所有者B" as coownerb
+entity "共有口座(MultiSig)" as multisig
+
+== サイファー作成 ==
+create entity "サイファー" as cipher
+founder -> cipher : 作成
+activate cipher
+cipher --> multisig : 紐づけ
+note right : サイファー検討フェーズ
+membera -> cipher : 編集
+memberb -> cipher : 編集
+
+== タスク作成 ==
+memberb -> cipher : タスク作成
+create entity "タスクA(トークン報酬)" as taska
+cipher -> taska
+activate taska
+founder -> cipher : タスク作成
+create entity "タスクB(暗号通貨報酬)" as taskb
+cipher -> taskb
+activate taskb
+
+== サイファー承認 ==
+founder -> cipher : 承認
+membera -> cipher : 承認
+memberb -> cipher : 承認
+deactivate cipher
+deactivate taska
+deactivate taskb 
+note right : サイファー承認
+
+== タスク担当決定 ==
+actor "個人A" as pica
+actor "個人B" as picb
+pica -> taska : 担当申請
+activate taska
+note left : タスク担当者承認フェーズ
+picb -> taskb : 担当申請
+activate taskb
+note left : タスク担当者承認フェーズ
+founder -> taska : 担当承認
+founder -> taskb : 担当承認
+membera -> taska : 担当承認
+membera -> taskb : 担当承認
+memberb -> taska : 担当承認
+deactivate taska
+note right : 担当者決定
+memberb -> taskb : 担当承認
+deactivate taskb
+note right : 担当者決定
+
+== タスク実施 ==
+pica -> taska : 成果物提示
+activate taska
+picb -> taskb : 成果物提示
+activate taskb
+
+== レビュー ==
+founder -> taska : 成果物承認
+founder -> taskb : 成果物承認
+membera -> taska : 成果物承認
+membera -> taskb : 成果物承認
+memberb -> taska : 成果物承認
+deactivate taska
+cipher -> pica : トークン配布
+note right : タスク完了
+memberb -> taskb : 成果物承認
+deactivate taskb
+note right : タスク完了
+
+== 支払 ==
+picb -> taskb : 支払申請
+activate picb
+taskb -> multisig : 支払申請
+activate multisig
+coownera -> multisig : 署名
+coownerb -> multisig : 署名
+picb -> multisig : 受取実行
+multisig -> picb : 支払
+deactivate multisig
+deactivate picb
+
+@enduml
