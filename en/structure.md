@@ -1,5 +1,5 @@
 Mypher consists of 4 concepts as Person, Cipher, Task and Token.  
-Cipher represents a concept of group.  
+Cipher represents a concept of partnership.  
 It can have many Tasks and Tokens as child elements.  
 User and Cipher have many-to-many relationship.  
 
@@ -19,7 +19,7 @@ Cryptocurrency transmission, which is mentioned later, is also done to this EOS 
 
 #### Cipher
 
-Cipher means the group as the unit of activity.  
+Cipher means the partnership as the unit of activity.  
 Functions of this are as below.
 * Decision making
 * Task management
