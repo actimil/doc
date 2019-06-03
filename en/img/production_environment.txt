@@ -1,0 +1,70 @@
+@startuml
+skinparam {
+	defaultFontName "Mplus 1p Light"
+	BoxPadding 100px
+}
+
+rectangle terminal as terminal1 {
+
+	rectangle browser as browser1{
+	}
+
+	rectangle "Mypher container" as container1 {
+		rectangle "EOS" as EOS1 {
+		}
+		rectangle "IPFS" as IPFS1 {
+		}
+		rectangle "node.js" as node1 {
+		}
+	}
+	browser1 -- node1
+	node1 -- EOS1
+	node1 -- IPFS1
+}
+
+rectangle terminal as terminal2 {
+
+	rectangle browser as browser2{
+	}
+
+	rectangle "Mypher container" as container2 {
+		rectangle "EOS" as EOS2 {
+		}
+		rectangle "IPFS" as IPFS2 {
+		}
+		rectangle "node.js" as node2 {
+		}
+	}
+	browser2 -- node2
+	node2 -- EOS2
+	node2 -- IPFS2
+}
+
+rectangle terminal as terminal3 {
+
+	rectangle browser as browser3{
+	}
+
+	rectangle "Mypher container" as container3 {
+		rectangle "EOS" as EOS3 {
+		}
+		rectangle "IPFS" as IPFS3 {
+		}
+		rectangle "node.js" as node3 {
+		}
+	}
+	browser3 -- node3
+	node3 -- EOS3
+	node3 -- IPFS3
+}
+
+EOS1 -- EOS2
+EOS2 -- EOS3
+EOS3 -- EOS1
+IPFS1 -- IPFS2
+IPFS2 -- IPFS3
+IPFS3 -- IPFS1
+IPFS3 -- IPFS1
+
+@enduml
+
