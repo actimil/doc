@@ -11,7 +11,7 @@ The details are as below.
 
 Person means the user.  
 
-Mypher is run on EOS which is one of the blockchain flameworks.
+Mypher run on EOS which is one of the blockchain frameworks.
 Person is same as the account of EOS. Thereby, To use Mypher, it is necessary to prepare an EOS account.  
 
 Cryptocurrency transmission, which is mentioned later, is also done to this EOS account. 

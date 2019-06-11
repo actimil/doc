@@ -21,6 +21,8 @@ rectangle terminal as terminal1 {
 	node1 -- EOS1
 	node1 -- IPFS1
 }
+actor user as user1
+user1 -- browser1
 
 rectangle terminal as terminal2 {
 
@@ -39,6 +41,8 @@ rectangle terminal as terminal2 {
 	node2 -- EOS2
 	node2 -- IPFS2
 }
+actor user as user2
+user2 -- browser2
 
 rectangle terminal as terminal3 {
 
@@ -57,6 +61,8 @@ rectangle terminal as terminal3 {
 	node3 -- EOS3
 	node3 -- IPFS3
 }
+actor user as user3
+user3 -- browser3
 
 EOS1 -- EOS2
 EOS2 -- EOS3

@@ -2,9 +2,7 @@ Mypher is a platform for making flexible and varied cooperations.
 
 The project is in progress on GitHub.
 
-```
-https://github.com/mypher/mypher
-```
+* [https://github.com/mypher/mypher](https://github.com/mypher/mypher)
 
 The details are as below.
 

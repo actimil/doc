@@ -22,6 +22,9 @@ rectangle 端末 as terminal1 {
 	node1 -- IPFS1
 }
 
+actor ユーザー as user1 
+user1 -- browser1
+
 rectangle 端末 as terminal2 {
 
 	rectangle ブラウザ as browser2{
@@ -40,6 +43,9 @@ rectangle 端末 as terminal2 {
 	node2 -- IPFS2
 }
 
+actor ユーザー as user2 
+user2 -- browser2
+
 rectangle 端末 as terminal3 {
 
 	rectangle ブラウザ as browser3{
@@ -57,6 +63,8 @@ rectangle 端末 as terminal3 {
 	node3 -- EOS3
 	node3 -- IPFS3
 }
+actor ユーザー as user3 
+user3 -- browser3
 
 EOS1 -- EOS2
 EOS2 -- EOS3
